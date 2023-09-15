@@ -1,0 +1,7 @@
+# Ignoring files according to https://microchipdeveloper.com/mplabx:version-control-working-with
+.generated_files/
+build/
+dist/
+nbproject/Makefile-*
+nbproject/Package-*
+nbproject/private/
