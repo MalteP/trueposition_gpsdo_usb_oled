@@ -17,7 +17,9 @@
         <itemPath>driver/usart.h</itemPath>
       </logicalFolder>
       <logicalFolder name="font" displayName="font" projectFiles="true">
-        <itemPath>font/font_10x14.h</itemPath>
+        <itemPath>font/font_6x10.h</itemPath>
+        <itemPath>font/font_7x14.h</itemPath>
+        <itemPath>font/font_7x14B.h</itemPath>
       </logicalFolder>
       <logicalFolder name="gpsdo" displayName="gpsdo" projectFiles="true">
         <itemPath>gpsdo/trueposition_gpsdo.h</itemPath>
@@ -140,7 +142,7 @@
         <property key="call-prologues" value="false"/>
         <property key="default-bitfield-type" value="true"/>
         <property key="default-char-type" value="true"/>
-        <property key="define-macros" value=""/>
+        <property key="define-macros" value="OLED_SIZE_64"/>
         <property key="disable-optimizations" value="false"/>
         <property key="extra-include-directories"
                   value="application;driver;font;gpsdo;oled;usb/inc;usb/src"/>

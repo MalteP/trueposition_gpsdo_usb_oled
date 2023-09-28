@@ -15,8 +15,13 @@
     You should have received a copy of the GNU General Public License
     along with Circuitvalley TruePosition GPSDO Controller with OLED.  If not, see <http://www.gnu.org/licenses/>.
 *******************************************************************************/
-
-#include "font_10x14.h"
+#ifndef OLED_SIZE_64
+#include "font_7x14.h"
+#define FONT_NAME font_7x14
+#else
+#include "font_6x10.h"
+#define FONT_NAME font_6x10
+#endif
 
 #include "system.h"
 
@@ -46,7 +51,7 @@ void printstring(unsigned char *ch, uint16_t x, uint8_t n)
     ch_holder = ch;
 	x_holder = x >> 3;
 	n_holder = n;
-    const uint8_t ch_height = (const uint8_t)font_10x14[*ch - 0x20].size.height; //all char have same height so no point calculating again. //height is fixed to 14 but compiler does not know this 
+    const uint8_t ch_height = (const uint8_t)FONT_NAME[*ch - 0x20].size.height; //all char have same height so no point calculating again. //height is fixed to 14 but compiler does not know this 
     
 	for (h = 0; h < ch_height; h++) 
     {
@@ -59,17 +64,23 @@ void printstring(unsigned char *ch, uint16_t x, uint8_t n)
 			
             if (bits_occupied & 0x07) //if number of bits occupied is not byte aligned 
             {   
-                linebuffer[h][x - 1] = linebuffer[h][x - 1] |  ((font_10x14[*ch - 0x20].data[(h * FONT_CONST_WIDTH)]&0xFF) >> (bits_occupied & 0x07));
-                linebuffer[h][x] =  (((font_10x14[*ch - 0x20].data[ (h * FONT_CONST_WIDTH)] & 0xFF) << (7 - (bits_occupied & 0x07) + 1) ) |  ( ((font_10x14[*ch - 0x20].data[1 + (h * FONT_CONST_WIDTH)]&0xFF) >> (bits_occupied & 0x07)) ));
-                linebuffer[h][x + 1] =  ((font_10x14[*ch - 0x20].data[1 + (h * FONT_CONST_WIDTH)] & 0xFF) << (7 - (bits_occupied & 0x07) + 1) );
+                linebuffer[h][x - 1] = linebuffer[h][x - 1] |  ((FONT_NAME[*ch - 0x20].data[(h * FONT_CONST_WIDTH)]&0xFF) >> (bits_occupied & 0x07));
+                #if FONT_CONST_WIDTH > 1
+                linebuffer[h][x] =  (((FONT_NAME[*ch - 0x20].data[ (h * FONT_CONST_WIDTH)] & 0xFF) << (7 - (bits_occupied & 0x07) + 1) ) |  ( ((FONT_NAME[*ch - 0x20].data[1 + (h * FONT_CONST_WIDTH)]&0xFF) >> (bits_occupied & 0x07)) ));
+                linebuffer[h][x + 1] =  ((FONT_NAME[*ch - 0x20].data[1 + (h * FONT_CONST_WIDTH)] & 0xFF) << (7 - (bits_occupied & 0x07) + 1) );
+                #else
+                linebuffer[h][x] =  (((FONT_NAME[*ch - 0x20].data[ (h * FONT_CONST_WIDTH)] & 0xFF) << (7 - (bits_occupied & 0x07) + 1) ));
+                #endif
             }
             else
             {
-                linebuffer[h][x] = font_10x14[*ch - 0x20].data[ (h * FONT_CONST_WIDTH)];
-                linebuffer[h][x+1] = font_10x14[*ch - 0x20].data[1 + (h * FONT_CONST_WIDTH)];
+                linebuffer[h][x] = FONT_NAME[*ch - 0x20].data[ (h * FONT_CONST_WIDTH)];
+                #if FONT_CONST_WIDTH > 1
+                linebuffer[h][x+1] = FONT_NAME[*ch - 0x20].data[1 + (h * FONT_CONST_WIDTH)];
+                #endif
             }
 			
-            bits_occupied = bits_occupied + font_10x14[*ch - 0x20].size.width +1;   // advance bit_occupied only for the actual bit width of character
+            bits_occupied = bits_occupied + FONT_NAME[*ch - 0x20].size.width +1;   // advance bit_occupied only for the actual bit width of character
             
 			x = ((bits_occupied + 7) >> 3);
             

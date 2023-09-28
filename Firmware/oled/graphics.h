@@ -24,7 +24,13 @@
 
 #include <xc.h> // include processor files - each processor file is guarded.  
 
+#include "OLED_SH1107.h"
+
+#ifndef OLED_SIZE_64
 #define LINE_BUFFER_VERTICAL 14
+#else
+#define LINE_BUFFER_VERTICAL 10
+#endif
 
 extern uint8_t linebuffer[14][16];
 

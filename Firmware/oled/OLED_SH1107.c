@@ -23,8 +23,11 @@
 #include <stdint.h>
 #include "graphics.h"
 
-
+#ifndef OLED_SIZE_64
 const uint8_t display_line[]={0, 15, 28, 43, 59, 75 }; // pixel at each line begin 
+#else
+const uint8_t display_line[]={2, 12, 22, 32, 42, 52 }; // pixel at each line begin 
+#endif
 
 static void OLED_InitializeDisplayBuffer(void *pvDisplayData, uint16_t ucValue);
 
@@ -86,7 +89,11 @@ void OLED_initDisplay(void)
     HAL_LCD_writeCommandOrData(0x7F);   // Set Multiplex Ration
     HAL_LCD_writeCommandOrData(0x58);
     HAL_LCD_writeCommandOrData(0xd3); // Set Display Offset
+#ifndef OLED_SIZE_64
     HAL_LCD_writeCommandOrData(0x6C);//0x60
+#else
+    HAL_LCD_writeCommandOrData(0x60);
+#endif
     HAL_LCD_writeCommandOrData(0xD5); //Set Display Divide Ratio/Oscillator Frequency Mode Set
     HAL_LCD_writeCommandOrData(0x51);
     HAL_LCD_writeCommandOrData(0xd9); // Set Phase Leghth

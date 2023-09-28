@@ -32,7 +32,11 @@
 
 
 // LCD Screen Dimensions
+#ifndef OLED_SIZE_64
 #define LCD_VERTICAL_MAX                   88
+#else
+#define LCD_VERTICAL_MAX                   64
+#endif
 #define LCD_HORIZONTAL_MAX                 128
 #define OLED_CMD        false
 #define OLED_DATA       true
@@ -51,12 +55,6 @@ extern const uint8_t display_line[];
 //
 //*****************************************************************************
 void OLED_Flush_linebuffer(uint8_t y);
-
-extern void Sharp96x96_SendToggleVCOMCommand(void);
-extern void Sharp96x96_initDisplay(void);
-extern void Sharp96x96_disable(void);
-extern void Sharp96x96_enable(void);
-
 void OLED_initDisplay(void);
 
-#endif // __SHARPLCD_H__
+#endif // __OLED_SH1107_H__
