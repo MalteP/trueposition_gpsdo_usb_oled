@@ -72,7 +72,8 @@ static void OLED_ClearAll_SH1107(uint8_t def)
 //*****************************************************************************
 void OLED_initDisplay(void)
 {
-        OLED_nRST_LAT = 1;
+    __delay_us(20);
+    OLED_nRST_LAT = 1;
 
     HAL_LCD_clearCS;
     HAL_OLED_setDATAorCMD(OLED_CMD);
