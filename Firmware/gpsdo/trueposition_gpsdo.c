@@ -48,7 +48,7 @@ void APP_UI_Task()
     static time_t last_time = 0;
     static char *tx_pointer = tx_buffer;
     static uint32_t key_press_count;
-    static uint8_t switch_screen;
+    static uint8_t switch_screen = 1;
     static bool screen_start_survey = false;
     static uint8_t survey_hours = 1;
     
