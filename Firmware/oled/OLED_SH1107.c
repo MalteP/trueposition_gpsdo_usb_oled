@@ -74,6 +74,7 @@ void OLED_initDisplay(void)
 {
     __delay_us(20);
     OLED_nRST_LAT = 1;
+    __delay_us(20);
 
     HAL_LCD_clearCS;
     HAL_OLED_setDATAorCMD(OLED_CMD);
