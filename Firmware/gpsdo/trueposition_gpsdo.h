@@ -87,7 +87,7 @@ const char *status_string_by_index[] = {
     "Force Holdover",
     "Soft Holdover",
     "NO GPS",
-    "OSXO Training",
+    "OCXO Training",
     "Waiting.."
 };
 
