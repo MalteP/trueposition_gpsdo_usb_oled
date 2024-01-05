@@ -34,7 +34,7 @@
 #pragma config IESO     = OFF       // Internal/External Oscillator Switchover (Oscillator Switchover mode disabled)
 #pragma config nPWRTEN  = OFF       // Power-up Timer Enable (Power up timer disabled)
 #pragma config BOREN    = SBORDIS   // Brown-out Reset Enable (BOR enabled in hardware (SBOREN is ignored))
-#pragma config BORV     = 190       // Brown-out Reset Voltage (BOR set to 1.9V nominal)
+#pragma config BORV     = 285       // Brown-out Reset Voltage (BOR set to 2.85V nominal)
 #pragma config nLPBOR   = ON        // Low-Power Brown-out Reset (Low-Power Brown-out Reset enabled)
 #pragma config WDTEN    = SWON      // Watchdog Timer Enable bits (WDT controlled by firmware (SWDTEN enabled))
 #pragma config WDTPS    = 32768     // Watchdog Timer Postscaler (1:32768)
